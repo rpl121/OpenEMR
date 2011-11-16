@@ -1468,9 +1468,9 @@ function exist_lists_item($patient_id,$type,$value,$dateTarget) {
       $response = sqlQuery("SELECT * FROM `lists` " .
         "WHERE `type`=? " .
         "AND `pid`=? " .
-        "AND `title`=? " .
+        "AND `title` LIKE ? " .
         "AND ( (`begdate` IS NULL AND `date`<=?) OR (`begdate` IS NOT NULL AND `begdate`<=?) ) " .
-        "AND ( (`enddate` IS NULL) OR (`enddate` IS NOT NULL AND `enddate`>=?) )", array($type,$patient_id,$code,$dateTarget,$dateTarget,$dateTarget) );
+        "AND ( (`enddate` IS NULL) OR (`enddate` IS NOT NULL AND `enddate`>=?) )", array($type,$patient_id,"%".$code."%",$dateTarget,$dateTarget,$dateTarget) );
       if (!empty($response)) return true;
     }
     else {
@@ -1490,9 +1490,9 @@ function exist_lists_item($patient_id,$type,$value,$dateTarget) {
     $response = sqlQuery("SELECT * FROM `lists` " .
       "WHERE `type`=? " .
       "AND `pid`=? " .
-      "AND `title`=? ".
+      "AND `title` LIKE ? ".
       "AND ( (`begdate` IS NULL AND `date`<=?) OR (`begdate` IS NOT NULL AND `begdate`<=?) ) " .
-      "AND ( (`enddate` IS NULL) OR (`enddate` IS NOT NULL AND `enddate`>=?) )", array($type,$patient_id,$value,$dateTarget,$dateTarget,$dateTarget) );
+      "AND ( (`enddate` IS NULL) OR (`enddate` IS NOT NULL AND `enddate`>=?) )", array($type,$patient_id,"%".$value."%",$dateTarget,$dateTarget,$dateTarget) );
     if (!empty($response)) return true;
   }
 
