@@ -30,6 +30,8 @@ $auth_demo     = acl_check('patients'  , 'demo');
 $printable = empty($_GET['printable']) ? false : true;
 unset($_GET['printable']);
 
+$printable = 'true';
+
 $N = 6;
 $first_issue = 1;
 
