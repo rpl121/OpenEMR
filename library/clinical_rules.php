@@ -1564,14 +1564,14 @@ function sql_interval_string($table,$intervalType,$intervalValue,$dateTarget) {
         //  ($intervalValue is not used)
         $dateArray = explode("-",$dateTarget);
         $Year = $dateArray[0];
-        $dateThisYear = $Year . "-09-01";
-        $dateLastYear = ($Year-1) . "-09-01";
+        $dateThisYear = $Year . "-08-01";
+        $dateLastYear = ($Year-1) . "-08-01";
         $dateSql =" " .
           "AND ((" .
-              "MONTH('" . add_escape_custom($dateTarget) . "') < 9 " .
+              "MONTH('" . add_escape_custom($dateTarget) . "') < 8 " .
               "AND " . add_escape_custom($date_label) . " >= '" . $dateLastYear . "' ) " .
             "OR (" .
-              "MONTH('" . add_escape_custom($dateTarget) . "') >= 9 " .
+              "MONTH('" . add_escape_custom($dateTarget) . "') >= 8 " .
               "AND " . add_escape_custom($date_label) . " >= '" . $dateThisYear . "' ))" .
           "AND " . add_escape_custom($date_label) . " <= '" . add_escape_custom($dateTarget) . "' ";
         break;
