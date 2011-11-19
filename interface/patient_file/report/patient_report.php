@@ -142,7 +142,7 @@ function show_date_fun(){
 <table class="includes">
  <tr>
   <td class='text'>
-   <input type='checkbox' name='include_demographics' id='include_demographics' value="demographics" checked><?php xl('Demographics','e'); ?><br>
+   <input type='checkbox' name='include_demographics' id='include_demographics' value="demographics"><?php xl('Demographics','e'); ?><br>
    <?php if (acl_check('patients', 'med')): ?>
    <input type='checkbox' name='include_history' id='include_history' value="history"><?php xl(' History','e'); ?><br>
    <?php endif; ?>
@@ -155,10 +155,10 @@ function show_date_fun(){
   </td>
   <td class='text'>
    <!--
-   <input type='checkbox' name='include_allergies' id='include_allergies' value="allergies">Allergies<br>
+   <input type='checkbox' name='include_allergies' id='include_allergies' value="allergies"checked>Allergies<br>
    <input type='checkbox' name='include_medications' id='include_medications' value="medications">Medications<br>
    -->
-   <input type='checkbox' name='include_immunizations' id='include_immunizations' value="immunizations"><?php xl('Immunizations','e'); ?><br>
+   <input type='checkbox' name='include_immunizations' id='include_immunizations' value="immunizations"checked><?php xl('Immunizations','e'); ?><br>
    <!--
    <input type='checkbox' name='include_medical_problems' id='include_medical_problems' value="medical_problems">Medical Problems<br>
    -->
@@ -194,7 +194,7 @@ function show_date_fun(){
 
 <?php
 // get issues
-$pres = sqlStatement("SELECT * FROM lists WHERE pid = $pid " .
+$pres = sqlStatement("SELECT * FROM lists WHERE pid = $pid " AND enddate is null" .
                     "ORDER BY type, begdate");
 $lasttype = "";
 while ($prow = sqlFetchArray($pres)) {
@@ -226,7 +226,8 @@ while ($prow = sqlFetchArray($pres)) {
     echo "    <tr class='text'>\n";
     echo "     <td>&nbsp;</td>\n";
     echo "     <td>";
-    echo "<input type='checkbox' name='issue_$rowid' id='issue_$rowid' class='issuecheckbox' value='/";
+    if(1=1) $checked='checked';		   
+    echo "<input type='checkbox' name='issue_$rowid' id='issue_$rowid' $checked class='issuecheckbox' value='/";
     while ($ierow = sqlFetchArray($ieres)) {
         echo $ierow['encounter'] . "/";
     }
