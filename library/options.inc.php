@@ -1955,11 +1955,6 @@ function get_layout_form_value($frow, $maxlength=255) {
     }
   }
 
-  // Better to die than to silently truncate data!
-  if ($maxlength && ($data_type != 3 && $data_type != 34) && strlen($value) > $maxlength)
-    die(htmlspecialchars( xl('ERROR: Field') . " '$field_id' " . xl('is too long'), ENT_NOQUOTES) .
-    ":<br />&nbsp;<br />".htmlspecialchars( $value, ENT_NOQUOTES));
-
   // Make sure the return value is quote-safe.
   if ($sanitize_all_escapes) {
     //escapes already removed and using binding/placemarks in sql calls
